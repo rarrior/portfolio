@@ -58,6 +58,14 @@ export default {
           '50%': { opacity: '1' },
         },
       },
+      container: {
+        center: true,
+        padding: '1rem',
+        screens: {
+          xl: '1148px',
+          '2xl': '1148px',
+        },
+      },
     },
   },
   plugins: [],
