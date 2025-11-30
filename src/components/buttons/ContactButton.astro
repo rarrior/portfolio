@@ -1,0 +1,29 @@
+---
+import {icons, contactInfo} from '../../utils/contact'
+import type { IconType } from '../../utils/contact'
+ 
+interface Props {
+  type: IconType
+}
+
+const { type } = Astro.props as Props
+
+const item = contactInfo.find(it=> it.icon === type)
+
+---
+
+{item && <a
+    href={item.link}
+    target={item.link.startsWith('http') ? '_blank' : undefined}
+    rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+    class={`flex items-center rounded-xl border-none  transition-all group animate-on-scroll`}
+  >
+    <div class="w-14 h-14 rounded-lg bg-primary-500/10 text-primary-500 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <Fragment set:html={icons[item.icon]} />
+      </svg>
+    </div>
+  </a>
+}
+
+

@@ -1,0 +1,160 @@
+---
+// Navigation.astro
+const navItems = [
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+];
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <!-- Logo -->
+    <a
+      href="#"
+      class="text-2xl font-bold text-gradient hover:scale-105 transition-transform cursor-pointer"
+    >
+      My Dev Portfolio
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-8">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="nav-link text-dark-300 hover:text-primary-400 transition-colors font-medium relative group"
+        >
+          {item.label}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="px-6 py-2 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary-500/50"
+      >
+        Let's Talk
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-dark-300 hover:text-primary-400 transition-colors"
+      aria-label="Toggle menu"
+    >
+      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"/>
+        <line x1="4" x2="20" y1="6" y2="6"/>
+        <line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+      <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"/>
+        <path d="m6 6 12 12"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 md:hidden pointer-events-none">
+  <!-- Backdrop -->
+  <div id="mobile-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Menu Content -->
+  <div id="mobile-menu-content" class="absolute right-0 top-0 bottom-0 w-64 glass-effect border-l border-dark-800/50 p-6 translate-x-full transition-transform duration-300">
+    <div class="flex flex-col gap-6 mt-20">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="mobile-nav-link text-lg text-dark-300 hover:text-primary-400 transition-colors font-medium"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="mobile-nav-link px-6 py-3 bg-primary-500 text-white rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
+      >
+        Let's Talk
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scroll handler for navbar
+  let lastScroll = 0;
+  const nav = document.getElementById('main-nav');
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+      nav?.classList.add('glass-effect', 'border-b', 'border-dark-800/50', 'py-4');
+      nav?.classList.remove('py-6');
+    } else {
+      nav?.classList.remove('glass-effect', 'border-b', 'border-dark-800/50', 'py-4');
+      nav?.classList.add('py-6');
+    }
+    
+    lastScroll = currentScroll;
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href') || '');
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileBackdrop = document.getElementById('mobile-backdrop');
+  const mobileMenuContent = document.getElementById('mobile-menu-content');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('pointer-events-none');
+      mobileBackdrop?.classList.remove('opacity-0');
+      mobileBackdrop?.classList.add('opacity-100');
+      mobileMenuContent?.classList.remove('translate-x-full');
+      mobileMenuContent?.classList.add('translate-x-0');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    } else {
+      mobileBackdrop?.classList.remove('opacity-100');
+      mobileBackdrop?.classList.add('opacity-0');
+      mobileMenuContent?.classList.remove('translate-x-0');
+      mobileMenuContent?.classList.add('translate-x-full');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      setTimeout(() => {
+        mobileMenu?.classList.add('pointer-events-none');
+      }, 300);
+    }
+  }
+
+  mobileMenuBtn?.addEventListener('click', toggleMenu);
+  mobileBackdrop?.addEventListener('click', toggleMenu);
+  
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      setTimeout(toggleMenu, 100);
+    });
+  });
+</script>
