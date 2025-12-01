@@ -16,55 +16,31 @@ export function initScrollAnimations() {
 
     if (elements.length === 0) return;
 
-    // Entry Animation Timeline
-    const entryTimeline = gsap.timeline({
+    // Set initial state for elements
+    gsap.set(elements, {
+      y: 100,
+      opacity: 0,
+    });
+
+    // Create a single timeline that handles both entry and exit
+    const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'bottom 70%',
-        end: 'bottom 70%',
-        scrub: 0.5,
+        start: 'top 80%', // Start when section is 80% from top of viewport
+        end: 'top 20%',   // End when section is 20% from top of viewport
+        scrub: 1,
+        toggleActions: 'play none none reverse',
       },
     });
 
-    entryTimeline.fromTo(
-      elements,
-      {
-        y: 100,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.05,
-        ease: 'power2.out',
-      }
-    );
-
-    // Exit Animation Timeline
-    const exitTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: '50% 10%',
-        end: 'bottom 10%',
-        scrub: 0.5,
-      },
+    // Animate in with stagger
+    timeline.to(elements, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.05,
+      ease: 'power2.out',
     });
-
-    exitTimeline.fromTo(
-      elements,
-      {
-        y: 0,
-        opacity: 1,
-      },
-      {
-        y: -150,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.02,
-        ease: 'power2.in',
-      }
-    );
   });
 }
 
