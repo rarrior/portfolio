@@ -26,8 +26,8 @@ export function initScrollAnimations() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%', // Start when section is 80% from top of viewport
-        end: 'top 20%',   // End when section is 20% from top of viewport
+        start: 'top 70%', // Start when section is 80% from top of viewport
+        end: 'bottom bottom',   // End when section is 20% from top of viewport
         scrub: 1,
         toggleActions: 'play none none reverse',
       },
@@ -38,7 +38,7 @@ export function initScrollAnimations() {
       y: 0,
       opacity: 1,
       duration: 1,
-      stagger: 0.05,
+      stagger: 0.5,
       ease: 'power2.out',
     });
 
