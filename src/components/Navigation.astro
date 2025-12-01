@@ -1,4 +1,6 @@
 ---
+import PrimaryButton from '../components/buttons/PrimaryButton.astro'
+
 // Navigation.astro
 const navItems = [
   { label: 'About', href: '#about' },
@@ -12,9 +14,9 @@ const navItems = [
     <!-- Logo -->
     <a
       href="#"
-      class="text-2xl font-bold text-gradient hover:scale-105 transition-transform cursor-pointer"
+      class="text-4xl text-gradient cursor-pointer hover:glow"
     >
-      My Dev Portfolio
+     &lt; RAG &gt; 
     </a>
 
     <!-- Desktop Navigation -->
@@ -28,12 +30,7 @@ const navItems = [
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
         </a>
       ))}
-      <a
-        href="#contact"
-        class="px-6 py-2 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary-500/50"
-      >
-        Let's Talk
-      </a>
+      <PrimaryButton href="#contact" label="Let's Talk" />
     </div>
 
     <!-- Mobile Menu Button -->

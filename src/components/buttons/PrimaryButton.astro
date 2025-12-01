@@ -1,0 +1,10 @@
+---
+const { label, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="px-6 py-2 bg-primary-700 text-white rounded-xl font-medium hover:bg-primary-800 transition-all hover:shadow-lg hover:shadow-primary-500/50"
+>
+  {label}
+</a>

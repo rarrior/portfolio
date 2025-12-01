@@ -18,7 +18,7 @@ const item = contactInfo.find(it=> it.icon === type)
     rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
     class={`flex items-center rounded-xl border-none  transition-all group animate-on-scroll`}
   >
-    <div class="w-14 h-14 rounded-lg bg-primary-500/10 text-primary-500 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+    <div class="w-14 h-14 rounded-lg bg-primary-500/10 text-primary-500 flex items-center justify-center hover:shadow-xl hover:shadow-primary-500/30 transition-all flex-shrink-0">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <Fragment set:html={icons[item.icon]} />
       </svg>
