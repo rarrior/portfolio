@@ -27,6 +27,20 @@ const {
   </body>
 </html>
 
+<script>
+  import { initScrollAnimations } from '../utils/scrollAnimations';
+
+  // Initialize scroll animations after DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+  });
+
+  // Re-initialize on page navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', () => {
+    initScrollAnimations();
+  });
+</script>
+
 <style is:global>
   @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
