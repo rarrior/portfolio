@@ -41,6 +41,24 @@ export function initScrollAnimations() {
       stagger: 0.05,
       ease: 'power2.out',
     });
+
+    // Exit animation: Fade out when section reaches the top
+    const exitTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',      // Start when section top reaches viewport top
+        end: 'bottom top',     // End when section bottom reaches viewport top
+        scrub: 1,
+      },
+    });
+
+    exitTimeline.to(elements, {
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.02,
+      ease: 'power2.in',
+    });
   });
 }
 
