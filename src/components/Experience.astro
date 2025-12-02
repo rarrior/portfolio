@@ -1,46 +1,11 @@
 ---
 // Experience.astro
-const experiences = [
-  {
-    id: 'tech-company',
-    period: '2022 - Present',
-    role: 'Senior Full-Stack Developer',
-    company: 'Tech Company Inc.',
-    description: 'Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and driving architectural decisions.',
-    achievements: [
-      'Reduced application load time by 40%',
-      'Implemented CI/CD pipeline reducing deployment time by 60%',
-      'Led team of 5 developers on major product launch',
-    ],
-    technologies: ['React', 'Node.js', 'TypeScript', 'AWS'],
-  },
-  {
-    id: 'digital-solutions',
-    period: '2020 - 2022',
-    role: 'Full-Stack Developer',
-    company: 'Digital Solutions Ltd.',
-    description: 'Developed and maintained multiple client projects using modern JavaScript frameworks and technologies.',
-    achievements: [
-      'Built 15+ responsive web applications',
-      'Integrated third-party APIs and payment systems',
-      'Improved code quality through testing and reviews',
-    ],
-    technologies: ['React', 'Next.js', 'Node.js', 'MongoDB'],
-  },
-  {
-    id: 'creative-studio',
-    period: '2019 - 2020',
-    role: 'Frontend Developer',
-    company: 'Creative Studio',
-    description: 'Created engaging user interfaces and interactive experiences for various clients across different industries.',
-    achievements: [
-      'Designed and developed 20+ landing pages',
-      'Achieved 95+ Google Lighthouse scores',
-      'Collaborated with designers on UI/UX improvements',
-    ],
-    technologies: ['JavaScript', 'HTML5', 'CSS3', 'Vue.js'],
-  },
-];
+import { getCollection } from 'astro:content';
+
+const experiencesCollection = await getCollection('experiences');
+const experiences = experiencesCollection
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((exp) => exp.data);
 ---
 
 <section id="experience" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
