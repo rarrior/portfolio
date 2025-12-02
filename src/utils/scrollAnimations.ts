@@ -77,19 +77,22 @@ export function initScrollAnimations() {
       ease: 'power2.out',
     });
 
-    // Exit animation: Each element fades out individually as it reaches the top
-    elements.forEach((element) => {
-      gsap.to(element, {
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 50%',      // Start fading when element is at center of viewport
-          end: 'top -30%',       // Complete fade well past the top
-          scrub: 2,              // Higher scrub for ultra-smooth fade
-        },
-        y: -20,                  // Very subtle upward movement
-        opacity: 0,
-        ease: 'none',            // Linear fade for consistent speed
-      });
+    // Exit animation: Fade out when section reaches the top
+    const exitTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 20%',        // Start when section top reaches viewport top
+        end: 'bottom 20%',         // End when section is 20% past the top
+        scrub: 1,
+      },
+    });
+
+    exitTimeline.to(elements, {
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.3,              // Reduced stagger for more synchronized fade
+      ease: 'power2.in',
     });
   });
 }
