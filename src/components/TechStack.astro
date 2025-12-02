@@ -24,10 +24,10 @@ const techStack = {
 };
 ---
 
-<section id="tech-stack" class="section-padding px-6 relative scroll-mt-20 overflow-hidden">
-  <div class="max-w-7xl mx-auto tech-stack-container">
+<section id="tech-stack" class="section-padding px-6 relative scroll-mt-20 overflow-hidden" data-scroll-section>
+  <div class="container">
     <!-- Section Header -->
-    <div class="text-center mb-16 slide-up">
+    <div class="text-center mb-16" data-scroll-animate>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
         My <span class="text-gradient">Tech Stack</span>
       </h2>
@@ -40,10 +40,10 @@ const techStack = {
     <!-- Tech Stack Grid -->
     <div class="space-y-10 md:space-y-12">
       {Object.entries(techStack).map(([category, technologies]) => (
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           <!-- Category Title -->
-          <div class="md:col-span-3 flex items-center">
-            <h3 class="text-2xl md:text-3xl font-bold text-gradient uppercase tracking-wider">
+          <div class="md:col-span-3 flex items-start" data-scroll-animate>
+            <h3 class="text-4xl md:text-6xl text-white uppercase hover:glow">
               {category}
             </h3>
           </div>
@@ -52,23 +52,23 @@ const techStack = {
           <div class="md:col-span-9">
             <div class="flex flex-wrap gap-4 md:gap-6">
               {technologies.map((tech) => (
-                <div class="tech-item group cursor-pointer">
+                <div class="group" data-scroll-animate>
                   <!-- Tech Icon -->
-                  <div class="tech-icon-wrapper relative flex flex-col items-center gap-3 p-4 rounded-xl transition-all duration-300 hover:bg-dark-900/50 hover:backdrop-blur-sm">
+                  <div class="relative flex flex-col items-center gap-3 px-2 rounded-xl">
                     <!-- Glow effect -->
-                    <div class="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/10 rounded-xl transition-all duration-300 blur-sm"></div>
+                    <div class="absolute inset-0 bg-primary-500/0 blur-sm"></div>
 
                     <img
                       src={`/svg/${tech.icon}.svg`}
                       alt={tech.name}
-                      class="h-10 w-10 md:h-12 md:w-12 object-contain transition-all duration-300 group-hover:scale-110 relative z-10"
+                      class="h-8 w-8 md:h-10 md:w-10 object-contain transition-all duration-300 group-hover:scale-125 relative z-10"
                       width="48"
                       height="48"
                       loading="lazy"
                     />
 
                     <!-- Tech Name -->
-                    <span class="text-xs md:text-sm font-medium text-dark-300 group-hover:text-primary-400 transition-colors duration-300 text-center whitespace-nowrap">
+                    <span class="text-xs md:text-sm font-medium text-dark-300 group-hover:text-dark-100 transition-colors duration-300 text-center whitespace-nowrap">
                       {tech.name}
                     </span>
                   </div>
@@ -79,109 +79,6 @@ const techStack = {
         </div>
       ))}
     </div>
-
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10 opacity-30">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-[128px] animate-pulse-glow"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-600/10 rounded-full blur-[128px] animate-pulse-glow" style="animation-delay: 1s;"></div>
-    </div>
   </div>
 </section>
 
-<style>
-  /* Initial state for slide-up animation */
-  .slide-up {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  /* Tech item hover effects */
-  .tech-item {
-    position: relative;
-  }
-
-  .tech-icon-wrapper {
-    will-change: transform;
-  }
-
-  .tech-item:hover .tech-icon-wrapper {
-    transform: translateY(-5px);
-  }
-</style>
-
-<script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Function to initialize animations
-  function initTechStackAnimations() {
-    const container = document.querySelector('.tech-stack-container');
-    const slideUpElements = document.querySelectorAll('#tech-stack .slide-up');
-
-    if (!container || slideUpElements.length === 0) return;
-
-    // Slide-up animation for each element
-    const slideUpTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: 'top 80%',
-        end: 'top 30%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-
-    slideUpTimeline.to(slideUpElements, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-    });
-
-    // Exit animation - parallax effect
-    const exitTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-      },
-    });
-
-    exitTimeline.to(container, {
-      y: -100,
-      opacity: 0.3,
-      ease: 'none',
-    });
-
-    // Add subtle animation to tech items on scroll
-    const techItems = document.querySelectorAll('.tech-item');
-
-    techItems.forEach((item, index) => {
-      gsap.from(item, {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.5,
-        delay: index * 0.03,
-        ease: 'back.out(1.5)',
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    });
-  }
-
-  // Initialize on DOM load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTechStackAnimations);
-  } else {
-    initTechStackAnimations();
-  }
-
-  // Re-initialize on page navigation (for SPA-like behavior)
-  document.addEventListener('astro:page-load', initTechStackAnimations);
-</script>
