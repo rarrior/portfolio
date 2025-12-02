@@ -1,0 +1,84 @@
+---
+// TechStack.astro - Technology Stack Section
+const techStack = {
+  Frontend: [
+    { name: "React", icon: "react" },
+    { name: "Next.js", icon: "next" },
+    { name: "TypeScript", icon: "typeScript" },
+    { name: "Astro", icon: "astro" },
+    { name: "Tailwind CSS", icon: "tailwindcss" },
+    { name: "HTML5", icon: "HTML5" },
+    { name: "CSS3", icon: "CSS3" },
+    { name: "JavaScript", icon: "javaScript" },
+  ],
+  Backend: [
+    { name: "Node.js", icon: "nodejs" },
+  ],
+  Database: [
+    { name: "Supabase", icon: "supabase" },
+    { name: "MySQL", icon: "mysql" },
+  ],
+  Tools: [
+    { name: "Git", icon: "git" },
+  ],
+};
+---
+
+<section id="tech-stack" class="section-padding px-6 relative scroll-mt-20 overflow-hidden" data-scroll-section>
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-16" data-scroll-animate>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        My <span class="text-gradient">Tech Stack</span>
+      </h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full mb-3"></div>
+      <p class="text-dark-400 max-w-2xl mx-auto">
+        Technologies and tools I use to build amazing digital experiences
+      </p>
+    </div>
+
+    <!-- Tech Stack Grid -->
+    <div class="space-y-10 md:space-y-12">
+      {Object.entries(techStack).map(([category, technologies]) => (
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+          <!-- Category Title -->
+          <div class="md:col-span-3 flex items-start" data-scroll-animate>
+            <h3 class="text-4xl md:text-6xl text-white uppercase hover:glow">
+              {category}
+            </h3>
+          </div>
+
+          <!-- Technologies -->
+          <div class="md:col-span-9">
+            <div class="flex flex-wrap gap-4 md:gap-6">
+              {technologies.map((tech) => (
+                <div class="group" data-scroll-animate>
+                  <!-- Tech Icon -->
+                  <div class="relative flex flex-col items-center gap-3 px-2 rounded-xl">
+                    <!-- Glow effect -->
+                    <div class="absolute inset-0 bg-primary-500/0 blur-sm"></div>
+
+                    <img
+                      src={`/svg/${tech.icon}.svg`}
+                      alt={tech.name}
+                      class="h-8 w-8 md:h-10 md:w-10 object-contain transition-all duration-300 group-hover:scale-125 relative z-10"
+                      width="48"
+                      height="48"
+                      loading="lazy"
+                    />
+
+                    <!-- Tech Name -->
+                    <span class="text-xs md:text-sm font-medium text-dark-300 group-hover:text-dark-100 transition-colors duration-300 text-center whitespace-nowrap">
+                      {tech.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
