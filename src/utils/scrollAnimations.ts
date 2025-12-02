@@ -82,7 +82,7 @@ export function initScrollAnimations() {
       scrollTrigger: {
         trigger: section,
         start: 'top top',        // Start when section top reaches viewport top
-        end: 'top -20%',         // End when section is 20% past the top
+        end: 'top -50%',         // End when section is 20% past the top
         scrub: 1,
       },
     });
@@ -91,7 +91,7 @@ export function initScrollAnimations() {
       y: -50,
       opacity: 0,
       duration: 1,
-      stagger: 0.05,              // Reduced stagger for more synchronized fade
+      stagger: 0.3,              // Reduced stagger for more synchronized fade
       ease: 'power2.in',
     });
   });
