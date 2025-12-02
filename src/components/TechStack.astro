@@ -1,0 +1,305 @@
+---
+// TechStack.astro - Technology Stack Section
+const techCategories = [
+  {
+    title: "Frontend",
+    icon: "🎨",
+    technologies: [
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "next" },
+      { name: "TypeScript", icon: "typeScript" },
+      { name: "Astro", icon: "astro" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+      { name: "HTML5", icon: "HTML5" },
+      { name: "CSS3", icon: "CSS3" },
+      { name: "JavaScript", icon: "javaScript" },
+    ],
+  },
+  {
+    title: "Backend & Database",
+    icon: "⚙️",
+    technologies: [
+      { name: "Node.js", icon: "nodejs" },
+      { name: "Supabase", icon: "supabase" },
+      { name: "MySQL", icon: "mysql" },
+    ],
+  },
+  {
+    title: "Tools & Others",
+    icon: "🛠️",
+    technologies: [
+      { name: "Git", icon: "git" },
+    ],
+  },
+];
+---
+
+<section id="tech-stack" class="section-padding px-6 relative scroll-mt-20" data-scroll-section>
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16" data-scroll-animate>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        My <span class="text-gradient">Tech Stack</span>
+      </h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full mb-3"></div>
+      <p class="text-dark-400 max-w-2xl mx-auto">
+        Technologies and tools I use to build amazing digital experiences
+      </p>
+    </div>
+
+    <!-- Tech Categories Grid -->
+    <div class="space-y-12">
+      {techCategories.map((category, categoryIndex) => (
+        <div
+          class="tech-category"
+          data-scroll-animate
+          data-category-index={categoryIndex}
+        >
+          <!-- Category Title -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-4xl tech-icon" aria-hidden="true">{category.icon}</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-gradient">
+              {category.title}
+            </h3>
+          </div>
+
+          <!-- Technologies Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
+            {category.technologies.map((tech, techIndex) => (
+              <div
+                class="tech-card glass-effect rounded-2xl p-6 group hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer"
+                data-scroll-animate
+                data-tech-index={`${categoryIndex}-${techIndex}`}
+              >
+                <!-- Animated gradient background -->
+                <div class="card-gradient absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                <!-- Accent line -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+
+                <!-- Card content -->
+                <div class="relative z-10 flex flex-col items-center justify-center gap-4">
+                  <!-- Tech Icon -->
+                  <div class="tech-icon-container relative">
+                    <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img
+                      src={`/svg/${tech.icon}.svg`}
+                      alt={tech.name}
+                      class="h-12 w-12 md:h-16 md:w-16 object-contain transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 relative z-10"
+                      width="64"
+                      height="64"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- Tech Name -->
+                  <h4 class="text-sm md:text-base font-semibold text-dark-200 group-hover:text-primary-300 transition-colors duration-300 text-center">
+                    {tech.name}
+                  </h4>
+                </div>
+
+                <!-- Decorative corner element -->
+                <div class="absolute -bottom-8 -right-8 w-24 h-24 bg-primary-500/5 rounded-full blur-2xl group-hover:bg-primary-500/10 transition-all duration-500"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+      <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500/5 rounded-full blur-[128px] animate-pulse-glow"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary-600/5 rounded-full blur-[128px] animate-pulse-glow delay-1000"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Card gradient background */
+  .card-gradient {
+    background: radial-gradient(
+      circle at top right,
+      rgba(51, 189, 243, 0.1) 0%,
+      rgba(51, 189, 243, 0.05) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Enhanced glass effect on hover */
+  .tech-card {
+    backdrop-filter: blur(12px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tech-card:hover {
+    backdrop-filter: blur(20px);
+    box-shadow:
+      0 20px 60px -15px rgba(51, 189, 243, 0.3),
+      0 0 0 1px rgba(51, 189, 243, 0.1);
+    transform: translateY(-8px) scale(1.05);
+  }
+
+  /* Tech icon animation */
+  .tech-icon {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .tech-category:nth-child(2) .tech-icon {
+    animation-delay: 0.5s;
+  }
+
+  .tech-category:nth-child(3) .tech-icon {
+    animation-delay: 1s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Staggered entrance animations */
+  .tech-category[data-category-index="0"] {
+    animation-delay: 0s;
+  }
+
+  .tech-category[data-category-index="1"] {
+    animation-delay: 0.2s;
+  }
+
+  .tech-category[data-category-index="2"] {
+    animation-delay: 0.4s;
+  }
+
+  /* Pulse animation for decorative elements */
+  @keyframes pulse-delayed {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Function to initialize animations
+  function initTechStackAnimations() {
+    const categories = document.querySelectorAll('.tech-category');
+
+    categories.forEach((category, categoryIndex) => {
+      const cards = category.querySelectorAll('.tech-card');
+
+      if (cards.length === 0) return;
+
+      // Set initial state for cards
+      gsap.set(cards, {
+        y: 80,
+        opacity: 0,
+        scale: 0.8,
+        rotationY: -15,
+      });
+
+      // Create scroll-triggered animation with stagger
+      gsap.to(cards, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotationY: 0,
+        duration: 1,
+        stagger: {
+          each: 0.1,
+          from: "start",
+        },
+        ease: 'back.out(1.2)',
+        scrollTrigger: {
+          trigger: category,
+          start: 'top 75%',
+          end: 'top 25%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // Add hover animation enhancements for each card
+      cards.forEach((card) => {
+        const gradient = card.querySelector('.card-gradient');
+        const icon = card.querySelector('img');
+
+        card.addEventListener('mouseenter', () => {
+          gsap.to(gradient, {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+          });
+
+          gsap.to(icon, {
+            scale: 1.2,
+            rotation: 10,
+            duration: 0.5,
+            ease: 'back.out(2)',
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(gradient, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          });
+
+          gsap.to(icon, {
+            scale: 1,
+            rotation: 0,
+            duration: 0.5,
+            ease: 'back.out(2)',
+          });
+        });
+      });
+    });
+
+    // Animate category titles with a different effect
+    const categoryTitles = document.querySelectorAll('.tech-category h3');
+    gsap.set(categoryTitles, {
+      x: -50,
+      opacity: 0,
+    });
+
+    categoryTitles.forEach((title, index) => {
+      gsap.to(title, {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    });
+  }
+
+  // Initialize on DOM load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTechStackAnimations);
+  } else {
+    initTechStackAnimations();
+  }
+
+  // Re-initialize on page navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initTechStackAnimations);
+</script>
