@@ -1,11 +1,8 @@
 ---
 import PrimaryButton from '../components/buttons/PrimaryButton.astro'
 
-// Navigation.astro
-const navItems = [
-  { label: 'Experience', href: '#experience' },
-  { label: 'Tech Stack', href: '#tech-stack' },
-];
+import { navigationItems } from '../utils/navigation'
+
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6">
@@ -20,7 +17,7 @@ const navItems = [
 
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center gap-8">
-      {navItems.map((item) => (
+      {navigationItems.map((item) => (
         <a
           href={item.href}
           class="nav-link text-dark-300 hover:text-primary-400 transition-colors font-medium relative group"
@@ -29,7 +26,7 @@ const navItems = [
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
         </a>
       ))}
-      <PrimaryButton href="#contact" label="Let's Talk" />
+      <!-- <PrimaryButton href="#contact">Let's Talk</PrimaryButton> -->
     </div>
 
     <!-- Mobile Menu Button -->
@@ -59,7 +56,7 @@ const navItems = [
   <!-- Menu Content -->
   <div id="mobile-menu-content" class="absolute right-0 top-0 bottom-0 w-64 glass-effect border-l border-dark-800/50 p-6 translate-x-full transition-transform duration-300">
     <div class="flex flex-col gap-6 mt-20">
-      {navItems.map((item) => (
+      {navigationItems.map((item) => (
         <a
           href={item.href}
           class="mobile-nav-link text-lg text-dark-300 hover:text-primary-400 transition-colors font-medium"

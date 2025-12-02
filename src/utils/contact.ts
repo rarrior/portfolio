@@ -11,26 +11,26 @@ export const contactInfo: ContactInfoType[] = [
   {
     icon: 'mail',
     label: 'Email',
-    value: 'your.email@example.com',
-    link: 'mailto:your.email@example.com',
+    value: 'raul.arriola@gmail.com',
+    link: 'mailto:raul.arriola@gmail.com',
   },
   {
     icon: 'linkedin',
     label: 'LinkedIn',
-    value: 'linkedin.com/in/yourprofile',
-    link: 'https://linkedin.com/in/yourprofile',
+    value: 'linkedin.com/in/raularriolagomez',
+    link: 'https://www.linkedin.com/in/raularriolagomez',
   },
   {
     icon: 'phone',
     label: 'Phone',
-    value: '+1 (555) 123-4567',
-    link: 'tel:+15551234567',
+    value: '+34 680 357 348',
+    link: 'tel:+34680357348',
   },
   {
     icon: 'github',
     label: 'GitHub',
-    value: 'github.com/yourusername',
-    link: 'https://github.com/yourusername',
+    value: 'github.com/rarrior',
+    link: 'https://github.com/rarrior',
   },
 ];
 
