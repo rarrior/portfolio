@@ -1,46 +1,14 @@
 ---
 // Experience.astro
-const experiences = [
-  {
-    id: 'tech-company',
-    period: '2022 - Present',
-    role: 'Senior Full-Stack Developer',
-    company: 'Tech Company Inc.',
-    description: 'Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and driving architectural decisions.',
-    achievements: [
-      'Reduced application load time by 40%',
-      'Implemented CI/CD pipeline reducing deployment time by 60%',
-      'Led team of 5 developers on major product launch',
-    ],
-    technologies: ['React', 'Node.js', 'TypeScript', 'AWS'],
-  },
-  {
-    id: 'digital-solutions',
-    period: '2020 - 2022',
-    role: 'Full-Stack Developer',
-    company: 'Digital Solutions Ltd.',
-    description: 'Developed and maintained multiple client projects using modern JavaScript frameworks and technologies.',
-    achievements: [
-      'Built 15+ responsive web applications',
-      'Integrated third-party APIs and payment systems',
-      'Improved code quality through testing and reviews',
-    ],
-    technologies: ['React', 'Next.js', 'Node.js', 'MongoDB'],
-  },
-  {
-    id: 'creative-studio',
-    period: '2019 - 2020',
-    role: 'Frontend Developer',
-    company: 'Creative Studio',
-    description: 'Created engaging user interfaces and interactive experiences for various clients across different industries.',
-    achievements: [
-      'Designed and developed 20+ landing pages',
-      'Achieved 95+ Google Lighthouse scores',
-      'Collaborated with designers on UI/UX improvements',
-    ],
-    technologies: ['JavaScript', 'HTML5', 'CSS3', 'Vue.js'],
-  },
-];
+import { getCollection } from 'astro:content';
+
+const experiencesCollection = await getCollection('experiences');
+
+const experiences = experiencesCollection
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((exp) => exp.data);
+
+export const prerender = true;
 ---
 
 <section id="experience" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
@@ -83,13 +51,11 @@ const experiences = [
 
             <!-- Company & Role -->
             <div class="mb-6">
-              <h3 class="text-2xl font-bold mb-2 text-gradient-hover group-hover:text-gradient transition-all duration-300">
+              <h3 class="text-primary-200 text-2xl font-bold mb-2">
                 {exp.role}
               </h3>
-              <p class="text-primary-400 font-semibold text-lg flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+              <p class="font-semibold text-lg flex items-center gap-2">
+                <img src={`/companies/${exp.img}`} class="w-8 h-8"/>
                 {exp.company}
               </p>
             </div>
