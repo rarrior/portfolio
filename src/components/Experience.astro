@@ -1,11 +1,14 @@
 ---
 // Experience.astro
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 const experiencesCollection = await getCollection('experiences');
+
 const experiences = experiencesCollection
-  .sort((a: CollectionEntry<'experiences'>, b: CollectionEntry<'experiences'>) => a.data.order - b.data.order)
-  .map((exp: CollectionEntry<'experiences'>) => exp.data);
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((exp) => exp.data);
+
+export const prerender = true;
 ---
 
 <section id="experience" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
@@ -48,13 +51,11 @@ const experiences = experiencesCollection
 
             <!-- Company & Role -->
             <div class="mb-6">
-              <h3 class="text-2xl font-bold mb-2 text-gradient-hover group-hover:text-gradient transition-all duration-300">
+              <h3 class="text-primary-200 text-2xl font-bold mb-2">
                 {exp.role}
               </h3>
-              <p class="text-primary-400 font-semibold text-lg flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+              <p class="font-semibold text-lg flex items-center gap-2">
+                <img src={`/companies/${exp.img}`} class="w-8 h-8"/>
                 {exp.company}
               </p>
             </div>
