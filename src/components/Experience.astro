@@ -44,8 +44,8 @@ const experiences = [
 ---
 
 <section id="experience" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
-  <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-12" data-scroll-animate>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-scroll-animate>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
         My <span class="text-gradient">Experience</span>
       </h2>
@@ -55,160 +55,220 @@ const experiences = [
       </p>
     </div>
 
-    <!-- Tabbed Experience Container -->
-    <div class="glass-effect rounded-2xl overflow-hidden" data-scroll-animate>
-      <!-- Tab Navigation -->
-      <div class="flex flex-col md:flex-row border-b border-dark-700/50">
-        <!-- Company Tabs (Sidebar on desktop, top on mobile) -->
-        <div class="md:w-64 md:border-r border-dark-700/50 bg-dark-900/30">
-          <div class="flex md:flex-col overflow-x-auto md:overflow-x-visible">
-            {experiences.map((exp, index) => (
-              <button
-                class={`experience-tab px-6 py-4 text-left transition-all duration-300 whitespace-nowrap md:whitespace-normal ${index === 0 ? 'active' : ''}`}
-                data-tab={exp.id}
-              >
-                <div class="flex items-center gap-3">
-                  <div class="hidden md:block w-1 h-12 rounded-full bg-primary-500 opacity-0 transition-opacity tab-indicator"></div>
-                  <div>
-                    <p class="font-medium text-sm md:text-base tab-company">{exp.company}</p>
-                    <p class="text-xs text-dark-400 mt-1">{exp.period}</p>
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {experiences.map((exp, index) => (
+        <div
+          class="experience-card glass-effect rounded-2xl p-8 group hover:scale-[1.02] transition-all duration-500 relative overflow-hidden"
+          data-scroll-animate
+          data-card-index={index}
+        >
+          <!-- Animated gradient background -->
+          <div class="card-gradient absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Accent line -->
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+
+          <!-- Card content -->
+          <div class="relative z-10">
+            <!-- Period badge -->
+            <div class="mb-6">
+              <span class="inline-flex items-center px-4 py-2 rounded-full bg-primary-500/10 text-primary-400 text-sm font-medium border border-primary-500/20 group-hover:border-primary-500/50 transition-colors duration-300">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {exp.period}
+              </span>
+            </div>
+
+            <!-- Company & Role -->
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-2 text-gradient-hover group-hover:text-gradient transition-all duration-300">
+                {exp.role}
+              </h3>
+              <p class="text-primary-400 font-semibold text-lg flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                {exp.company}
+              </p>
+            </div>
+
+            <!-- Description -->
+            <p class="text-dark-300 leading-relaxed mb-6 text-sm group-hover:text-dark-200 transition-colors duration-300">
+              {exp.description}
+            </p>
+
+            <!-- Achievements -->
+            <div class="mb-6">
+              <h4 class="text-xs font-bold text-dark-200 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span class="w-6 h-px bg-primary-500"></span>
+                Achievements
+              </h4>
+              <div class="space-y-2">
+                {exp.achievements.map((achievement) => (
+                  <div class="flex items-start gap-2 text-sm">
+                    <span class="text-primary-500 mt-0.5 flex-shrink-0 transform group-hover:scale-125 transition-transform duration-300">✦</span>
+                    <span class="text-dark-400 group-hover:text-dark-300 transition-colors duration-300">{achievement}</span>
                   </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <!-- Content Area -->
-        <div class="flex-1 p-8 md:p-10 min-h-[400px]">
-          {experiences.map((exp, index) => (
-            <div
-              class={`experience-content ${index === 0 ? 'active' : ''}`}
-              data-content={exp.id}
-            >
-              <!-- Role and Period -->
-              <div class="mb-6">
-                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gradient-hover">{exp.role}</h3>
-                <p class="text-primary-500 font-medium text-lg mb-1">{exp.company}</p>
-                <span class="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-sm font-medium">
-                  {exp.period}
-                </span>
+                ))}
               </div>
+            </div>
 
-              <!-- Description -->
-              <p class="text-dark-300 mb-6 leading-relaxed">{exp.description}</p>
-
-              <!-- Achievements -->
-              <div class="mb-6">
-                <h4 class="text-sm font-bold text-dark-200 uppercase tracking-wide mb-4 flex items-center gap-2">
-                  <span class="w-8 h-px bg-primary-500"></span>
-                  Key Achievements
+            <!-- Technologies -->
+            {exp.technologies && (
+              <div>
+                <h4 class="text-xs font-bold text-dark-200 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <span class="w-6 h-px bg-primary-500"></span>
+                  Tech Stack
                 </h4>
-                <div class="space-y-3">
-                  {exp.achievements.map((achievement) => (
-                    <div class="flex items-start gap-3 group">
-                      <span class="text-primary-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform">▸</span>
-                      <span class="text-dark-400 leading-relaxed">{achievement}</span>
-                    </div>
+                <div class="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech) => (
+                    <span class="px-3 py-1 text-xs rounded-lg bg-dark-800/80 text-dark-300 border border-dark-700 group-hover:border-primary-500/30 group-hover:text-primary-400 transition-all duration-300">
+                      {tech}
+                    </span>
                   ))}
                 </div>
               </div>
+            )}
+          </div>
 
-              <!-- Technologies -->
-              {exp.technologies && (
-                <div>
-                  <h4 class="text-sm font-bold text-dark-200 uppercase tracking-wide mb-3 flex items-center gap-2">
-                    <span class="w-8 h-px bg-primary-500"></span>
-                    Technologies
-                  </h4>
-                  <div class="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech) => (
-                      <span class="px-4 py-2 text-sm rounded-lg bg-dark-800/80 text-dark-300 border border-dark-700 hover:border-primary-500/50 hover:text-primary-400 transition-all cursor-default">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+          <!-- Decorative corner element -->
+          <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-primary-500/5 rounded-full blur-2xl group-hover:bg-primary-500/10 transition-all duration-500"></div>
         </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  /* Tab Styling */
-  .experience-tab {
-    position: relative;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
+  /* Card gradient background */
+  .card-gradient {
+    background: radial-gradient(
+      circle at top right,
+      rgba(99, 102, 241, 0.05) 0%,
+      rgba(99, 102, 241, 0.02) 50%,
+      transparent 100%
+    );
   }
 
-  .experience-tab:hover .tab-company {
-    color: var(--primary-400);
+  /* Enhanced glass effect on hover */
+  .experience-card {
+    backdrop-filter: blur(12px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .experience-tab.active {
-    background: rgba(99, 102, 241, 0.05);
-    border-color: var(--primary-500);
+  .experience-card:hover {
+    backdrop-filter: blur(20px);
+    box-shadow:
+      0 20px 60px -15px rgba(99, 102, 241, 0.3),
+      0 0 0 1px rgba(99, 102, 241, 0.1);
+    transform: translateY(-8px) scale(1.02);
   }
 
-  .experience-tab.active .tab-indicator {
-    opacity: 1;
-  }
-
-  .experience-tab.active .tab-company {
-    color: var(--primary-400);
-  }
-
-  @media (min-width: 768px) {
-    .experience-tab {
-      border-bottom: none;
-      border-left: 3px solid transparent;
-    }
-
-    .experience-tab.active {
-      border-left-color: var(--primary-500);
-    }
-  }
-
-  /* Content Styling */
-  .experience-content {
-    display: none;
-    animation: fadeIn 0.4s ease-out;
-  }
-
-  .experience-content.active {
-    display: block;
-  }
-
-  /* Gradient hover effect */
+  /* Text gradient hover effect */
   .text-gradient-hover {
+    background: linear-gradient(135deg, #fff 0%, #e5e7eb 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
+  }
+
+  .text-gradient-hover.text-gradient {
+    background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #4f46e5 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  /* Staggered animation for cards */
+  .experience-card[data-card-index="0"] {
+    animation-delay: 0s;
+  }
+
+  .experience-card[data-card-index="1"] {
+    animation-delay: 0.1s;
+  }
+
+  .experience-card[data-card-index="2"] {
+    animation-delay: 0.2s;
+  }
+
+  /* Card entrance animation */
+  @keyframes cardEnter {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Pulse animation for decorative elements */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 </style>
 
 <script>
-  // Tab switching functionality
-  const tabs = document.querySelectorAll('.experience-tab');
-  const contents = document.querySelectorAll('.experience-content');
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const targetId = tab.getAttribute('data-tab');
+  gsap.registerPlugin(ScrollTrigger);
 
-      // Remove active class from all tabs and contents
-      tabs.forEach((t) => t.classList.remove('active'));
-      contents.forEach((c) => c.classList.remove('active'));
+  // Animate cards on scroll with stagger
+  const cards = document.querySelectorAll('.experience-card');
 
-      // Add active class to clicked tab and corresponding content
-      tab.classList.add('active');
-      const targetContent = document.querySelector(`[data-content="${targetId}"]`);
-      if (targetContent) {
-        targetContent.classList.add('active');
-      }
+  if (cards.length > 0) {
+    // Set initial state
+    gsap.set(cards, {
+      y: 60,
+      opacity: 0,
+      scale: 0.9,
     });
-  });
+
+    // Create scroll-triggered animation
+    gsap.to(cards, {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '#experience',
+        start: 'top 70%',
+        end: 'top 30%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // Add hover animation enhancements
+    cards.forEach((card) => {
+      const gradient = card.querySelector('.card-gradient');
+
+      card.addEventListener('mouseenter', () => {
+        gsap.to(gradient, {
+          opacity: 1,
+          duration: 0.5,
+          ease: 'power2.out',
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(gradient, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+        });
+      });
+    });
+  }
 </script>
