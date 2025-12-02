@@ -1,6 +1,6 @@
 ---
 // Experience.astro
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 const experiencesCollection = await getCollection('experiences');
 const experiences = experiencesCollection

@@ -8,7 +8,7 @@ const experiencesCollection = defineCollection({
     company: z.string(),
     description: z.string(),
     achievements: z.array(z.string()),
-    technologies: z.array(z.string()),
+    technologies: z.array(z.string()).optional(),
     order: z.number(),
   }),
 });
