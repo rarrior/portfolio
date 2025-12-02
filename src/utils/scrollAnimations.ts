@@ -1,13 +1,48 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+
+// Global Lenis instance
+let lenis: Lenis | null = null;
+
+/**
+ * Initialize Lenis smooth scrolling
+ */
+export function initSmoothScroll() {
+  // Initialize Lenis
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+    infinite: false,
+  });
+
+  // Integrate Lenis with GSAP ScrollTrigger
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis?.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+
+  return lenis;
+}
 
 /**
  * Initialize scroll animations for section transitions
  */
 export function initScrollAnimations() {
+  // Initialize smooth scroll first
+  initSmoothScroll();
+
   // Get all sections with scroll animations
   const sections = document.querySelectorAll('[data-scroll-section]');
 
@@ -71,9 +106,18 @@ export function refreshScrollAnimations() {
 }
 
 /**
- * Kill all ScrollTrigger instances
+ * Kill all ScrollTrigger instances and destroy Lenis
  * Useful for cleanup
  */
 export function killScrollAnimations() {
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  lenis?.destroy();
+  lenis = null;
+}
+
+/**
+ * Get the Lenis instance
+ */
+export function getLenis() {
+  return lenis;
 }
