@@ -81,8 +81,8 @@ export function initScrollAnimations() {
     const exitTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 20%',      // Start when section top reaches viewport top
-        end: 'bottom top',     // End when section bottom reaches viewport top
+        start: 'top top',        // Start when section top reaches viewport top
+        end: 'top -20%',         // End when section is 20% past the top
         scrub: 1,
       },
     });
@@ -90,8 +90,8 @@ export function initScrollAnimations() {
     exitTimeline.to(elements, {
       y: -50,
       opacity: 0,
-      duration: 0.4,
-      stagger: 0.2,
+      duration: 1,
+      stagger: 0.05,              // Reduced stagger for more synchronized fade
       ease: 'power2.in',
     });
   });
