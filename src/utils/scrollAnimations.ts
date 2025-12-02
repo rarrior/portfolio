@@ -82,13 +82,13 @@ export function initScrollAnimations() {
       gsap.to(element, {
         scrollTrigger: {
           trigger: element,
-          start: 'top 30%',      // Start fading earlier (30% from top)
-          end: 'top -20%',       // Complete fade later (20% past top)
-          scrub: 1,
+          start: 'top 50%',      // Start fading when element is at center of viewport
+          end: 'top -30%',       // Complete fade well past the top
+          scrub: 2,              // Higher scrub for ultra-smooth fade
         },
-        y: -30,                  // Gentler upward movement
+        y: -20,                  // Very subtle upward movement
         opacity: 0,
-        ease: 'power1.inOut',    // Smoother, more gradual easing
+        ease: 'none',            // Linear fade for consistent speed
       });
     });
   });
