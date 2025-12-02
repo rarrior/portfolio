@@ -2,6 +2,7 @@
 // Experience.astro
 const experiences = [
   {
+    id: 'tech-company',
     period: '2022 - Present',
     role: 'Senior Full-Stack Developer',
     company: 'Tech Company Inc.',
@@ -14,6 +15,7 @@ const experiences = [
     technologies: ['React', 'Node.js', 'TypeScript', 'AWS'],
   },
   {
+    id: 'digital-solutions',
     period: '2020 - 2022',
     role: 'Full-Stack Developer',
     company: 'Digital Solutions Ltd.',
@@ -26,6 +28,7 @@ const experiences = [
     technologies: ['React', 'Next.js', 'Node.js', 'MongoDB'],
   },
   {
+    id: 'creative-studio',
     period: '2019 - 2020',
     role: 'Frontend Developer',
     company: 'Creative Studio',
@@ -41,189 +44,160 @@ const experiences = [
 ---
 
 <section id="experience" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-20" data-scroll-animate>
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12" data-scroll-animate>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-        My <span class="text-gradient">Journey</span>
+        My <span class="text-gradient">Experience</span>
       </h2>
       <div class="w-20 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full mb-3"></div>
       <p class="text-dark-400 max-w-2xl mx-auto">
-        A timeline of my professional experience and achievements
+        My professional journey across different companies
       </p>
     </div>
 
-    <!-- Timeline Container -->
-    <div class="relative">
-      <!-- Timeline Line (hidden on mobile, visible on desktop) -->
-      <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary-500 via-primary-400 to-primary-600 opacity-30"></div>
+    <!-- Tabbed Experience Container -->
+    <div class="glass-effect rounded-2xl overflow-hidden" data-scroll-animate>
+      <!-- Tab Navigation -->
+      <div class="flex flex-col md:flex-row border-b border-dark-700/50">
+        <!-- Company Tabs (Sidebar on desktop, top on mobile) -->
+        <div class="md:w-64 md:border-r border-dark-700/50 bg-dark-900/30">
+          <div class="flex md:flex-col overflow-x-auto md:overflow-x-visible">
+            {experiences.map((exp, index) => (
+              <button
+                class={`experience-tab px-6 py-4 text-left transition-all duration-300 whitespace-nowrap md:whitespace-normal ${index === 0 ? 'active' : ''}`}
+                data-tab={exp.id}
+              >
+                <div class="flex items-center gap-3">
+                  <div class="hidden md:block w-1 h-12 rounded-full bg-primary-500 opacity-0 transition-opacity tab-indicator"></div>
+                  <div>
+                    <p class="font-medium text-sm md:text-base tab-company">{exp.company}</p>
+                    <p class="text-xs text-dark-400 mt-1">{exp.period}</p>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
 
-      <!-- Timeline Items -->
-      <div class="space-y-12 lg:space-y-20">
-        {experiences.map((exp, index) => {
-          const isEven = index % 2 === 0;
-          return (
-            <div class="relative" data-scroll-animate>
-              <!-- Desktop Layout (alternating) -->
-              <div class="hidden lg:grid lg:grid-cols-2 lg:gap-12 items-center">
-                {isEven ? (
-                  <>
-                    {/* Left Side - Content */}
-                    <div class="text-right">
-                      <div class="inline-block text-left">
-                        <div class="glass-effect rounded-2xl p-8 hover:border-primary-500/50 transition-all duration-300 hover:transform hover:scale-[1.02] group">
-                          <div class="flex items-center justify-between mb-4">
-                            <span class="inline-block px-4 py-2 rounded-full bg-primary-500/10 text-primary-400 text-sm font-semibold">
-                              {exp.period}
-                            </span>
-                          </div>
-
-                          <h3 class="text-2xl font-bold mb-2 group-hover:text-primary-400 transition-colors">{exp.role}</h3>
-                          <p class="text-primary-500 font-medium mb-4 text-lg">{exp.company}</p>
-
-                          <p class="text-dark-300 mb-6 leading-relaxed">{exp.description}</p>
-
-                          <div class="space-y-3 mb-6">
-                            <p class="text-sm font-semibold text-dark-200 uppercase tracking-wide">Key Achievements</p>
-                            {exp.achievements.map((achievement) => (
-                              <div class="flex items-start gap-3">
-                                <span class="text-primary-500 mt-1 flex-shrink-0">▸</span>
-                                <span class="text-dark-400 text-sm leading-relaxed">{achievement}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          {exp.technologies && (
-                            <div class="flex flex-wrap gap-2">
-                              {exp.technologies.map((tech) => (
-                                <span class="px-3 py-1 text-xs rounded-full bg-dark-800/80 text-dark-300 border border-dark-700 hover:border-primary-500/50 transition-colors">
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right Side - Empty with Timeline Node */}
-                    <div class="relative flex items-center">
-                      <div class="absolute -left-12 w-8 h-8 rounded-full bg-dark-900 border-4 border-primary-500 shadow-lg shadow-primary-500/50 z-10 pulse-node"></div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Left Side - Empty with Timeline Node */}
-                    <div class="relative flex items-center justify-end">
-                      <div class="absolute -right-12 w-8 h-8 rounded-full bg-dark-900 border-4 border-primary-500 shadow-lg shadow-primary-500/50 z-10 pulse-node"></div>
-                    </div>
-
-                    {/* Right Side - Content */}
-                    <div class="text-left">
-                      <div class="inline-block">
-                        <div class="glass-effect rounded-2xl p-8 hover:border-primary-500/50 transition-all duration-300 hover:transform hover:scale-[1.02] group">
-                          <div class="flex items-center justify-between mb-4">
-                            <span class="inline-block px-4 py-2 rounded-full bg-primary-500/10 text-primary-400 text-sm font-semibold">
-                              {exp.period}
-                            </span>
-                          </div>
-
-                          <h3 class="text-2xl font-bold mb-2 group-hover:text-primary-400 transition-colors">{exp.role}</h3>
-                          <p class="text-primary-500 font-medium mb-4 text-lg">{exp.company}</p>
-
-                          <p class="text-dark-300 mb-6 leading-relaxed">{exp.description}</p>
-
-                          <div class="space-y-3 mb-6">
-                            <p class="text-sm font-semibold text-dark-200 uppercase tracking-wide">Key Achievements</p>
-                            {exp.achievements.map((achievement) => (
-                              <div class="flex items-start gap-3">
-                                <span class="text-primary-500 mt-1 flex-shrink-0">▸</span>
-                                <span class="text-dark-400 text-sm leading-relaxed">{achievement}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          {exp.technologies && (
-                            <div class="flex flex-wrap gap-2">
-                              {exp.technologies.map((tech) => (
-                                <span class="px-3 py-1 text-xs rounded-full bg-dark-800/80 text-dark-300 border border-dark-700 hover:border-primary-500/50 transition-colors">
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
+        <!-- Content Area -->
+        <div class="flex-1 p-8 md:p-10 min-h-[400px]">
+          {experiences.map((exp, index) => (
+            <div
+              class={`experience-content ${index === 0 ? 'active' : ''}`}
+              data-content={exp.id}
+            >
+              <!-- Role and Period -->
+              <div class="mb-6">
+                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gradient-hover">{exp.role}</h3>
+                <p class="text-primary-500 font-medium text-lg mb-1">{exp.company}</p>
+                <span class="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-sm font-medium">
+                  {exp.period}
+                </span>
               </div>
 
-              <!-- Mobile Layout (stacked) -->
-              <div class="lg:hidden relative pl-10">
-                {/* Timeline Node for Mobile */}
-                <div class="absolute left-0 top-6 w-5 h-5 rounded-full bg-dark-900 border-3 border-primary-500 shadow-lg shadow-primary-500/50 z-10"></div>
+              <!-- Description -->
+              <p class="text-dark-300 mb-6 leading-relaxed">{exp.description}</p>
 
-                {/* Vertical Line for Mobile */}
-                {index < experiences.length - 1 && (
-                  <div class="absolute left-2.5 top-6 w-0.5 h-full bg-gradient-to-b from-primary-500 to-primary-400 opacity-30 transform translate-y-6"></div>
-                )}
-
-                <div class="glass-effect rounded-2xl p-6 hover:border-primary-500/50 transition-all">
-                  <span class="inline-block px-3 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-xs font-semibold mb-3">
-                    {exp.period}
-                  </span>
-
-                  <h3 class="text-xl font-bold mb-1">{exp.role}</h3>
-                  <p class="text-primary-500 font-medium mb-3">{exp.company}</p>
-
-                  <p class="text-dark-300 mb-4 text-sm leading-relaxed">{exp.description}</p>
-
-                  <div class="space-y-2 mb-4">
-                    <p class="text-xs font-semibold text-dark-200 uppercase tracking-wide">Key Achievements</p>
-                    {exp.achievements.map((achievement) => (
-                      <div class="flex items-start gap-2">
-                        <span class="text-primary-500 mt-0.5 flex-shrink-0 text-sm">▸</span>
-                        <span class="text-dark-400 text-xs leading-relaxed">{achievement}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {exp.technologies && (
-                    <div class="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech) => (
-                        <span class="px-2.5 py-1 text-xs rounded-full bg-dark-800/80 text-dark-300 border border-dark-700">
-                          {tech}
-                        </span>
-                      ))}
+              <!-- Achievements -->
+              <div class="mb-6">
+                <h4 class="text-sm font-bold text-dark-200 uppercase tracking-wide mb-4 flex items-center gap-2">
+                  <span class="w-8 h-px bg-primary-500"></span>
+                  Key Achievements
+                </h4>
+                <div class="space-y-3">
+                  {exp.achievements.map((achievement) => (
+                    <div class="flex items-start gap-3 group">
+                      <span class="text-primary-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform">▸</span>
+                      <span class="text-dark-400 leading-relaxed">{achievement}</span>
                     </div>
-                  )}
+                  ))}
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
 
-      {/* Timeline End Marker */}
-      <div class="hidden lg:flex justify-center mt-12" data-scroll-animate>
-        <div class="w-4 h-4 rounded-full bg-primary-500 shadow-lg shadow-primary-500/50 animate-pulse"></div>
+              <!-- Technologies -->
+              {exp.technologies && (
+                <div>
+                  <h4 class="text-sm font-bold text-dark-200 uppercase tracking-wide mb-3 flex items-center gap-2">
+                    <span class="w-8 h-px bg-primary-500"></span>
+                    Technologies
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech) => (
+                      <span class="px-4 py-2 text-sm rounded-lg bg-dark-800/80 text-dark-300 border border-dark-700 hover:border-primary-500/50 hover:text-primary-400 transition-all cursor-default">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .pulse-node {
-    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* Tab Styling */
+  .experience-tab {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
   }
 
-  @keyframes pulse-ring {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  .experience-tab:hover .tab-company {
+    color: var(--primary-400);
+  }
+
+  .experience-tab.active {
+    background: rgba(99, 102, 241, 0.05);
+    border-color: var(--primary-500);
+  }
+
+  .experience-tab.active .tab-indicator {
+    opacity: 1;
+  }
+
+  .experience-tab.active .tab-company {
+    color: var(--primary-400);
+  }
+
+  @media (min-width: 768px) {
+    .experience-tab {
+      border-bottom: none;
+      border-left: 3px solid transparent;
     }
-    50% {
-      box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+
+    .experience-tab.active {
+      border-left-color: var(--primary-500);
     }
+  }
+
+  /* Content Styling */
+  .experience-content {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .experience-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gradient hover effect */
+  .text-gradient-hover {
+    transition: all 0.3s ease;
   }
 
   [data-scroll-animate] {
@@ -234,8 +208,6 @@ const experiences = [
 
   [data-scroll-animate]:nth-child(1) { animation-delay: 0.1s; }
   [data-scroll-animate]:nth-child(2) { animation-delay: 0.2s; }
-  [data-scroll-animate]:nth-child(3) { animation-delay: 0.3s; }
-  [data-scroll-animate]:nth-child(4) { animation-delay: 0.4s; }
 
   @keyframes fadeInUp {
     to {
@@ -244,3 +216,26 @@ const experiences = [
     }
   }
 </style>
+
+<script>
+  // Tab switching functionality
+  const tabs = document.querySelectorAll('.experience-tab');
+  const contents = document.querySelectorAll('.experience-content');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('data-tab');
+
+      // Remove active class from all tabs and contents
+      tabs.forEach((t) => t.classList.remove('active'));
+      contents.forEach((c) => c.classList.remove('active'));
+
+      // Add active class to clicked tab and corresponding content
+      tab.classList.add('active');
+      const targetContent = document.querySelector(`[data-content="${targetId}"]`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+</script>
