@@ -3,9 +3,9 @@ import {icons, contactInfo} from '../utils/contact'
 
 ---
 
-<section id="contact" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20">
+<section id="contact" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16 animate-on-scroll">
+    <div class="text-center mb-16" data-scroll-animate>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
         Get In <span class="text-gradient">Touch</span>
       </h2>
@@ -23,7 +23,8 @@ import {icons, contactInfo} from '../utils/contact'
             href={item.link}
             target={item.link.startsWith('http') ? '_blank' : undefined}
             rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-            class={`flex items-center gap-4 p-6 glass-effect rounded-xl hover:border-primary-500/50 transition-all group animate-on-scroll stagger-${index + 1}`}
+            class="flex items-center gap-4 p-6 glass-effect rounded-xl hover:border-primary-500/50 transition-all group"
+            data-scroll-animate
           >
             <div class="w-14 h-14 rounded-lg bg-primary-500/10 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-500">
@@ -45,7 +46,7 @@ import {icons, contactInfo} from '../utils/contact'
       </div>
 
       <!-- Location Card -->
-      <div class="glass-effect rounded-2xl p-8 text-center animate-on-scroll stagger-5">
+      <div class="glass-effect rounded-2xl p-8 text-center" data-scroll-animate>
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-500/10 mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-500">
             <Fragment set:html={icons.mapPin} />
@@ -57,7 +58,7 @@ import {icons, contactInfo} from '../utils/contact'
       </div>
 
       <!-- Call to Action -->
-      <div class="text-center mt-12 animate-on-scroll stagger-6">
+      <div class="text-center mt-12" data-scroll-animate>
         <p class="text-dark-300 text-lg mb-6">
           Looking forward to collaborating on your next project!
         </p>
@@ -90,23 +91,3 @@ import {icons, contactInfo} from '../utils/contact'
     </div>
   </div>
 </section>
-
-<script>
-  // Intersection Observer for scroll animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-    observer.observe(el);
-  });
-</script>
