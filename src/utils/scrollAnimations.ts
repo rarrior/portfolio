@@ -14,12 +14,12 @@ let lenis: Lenis | null = null;
 export function initSmoothScroll() {
   // Initialize Lenis
   lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    duration: 1.5,
+    lerp: 0.1,
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    wheelMultiplier: 1,
+    wheelMultiplier: 1.5,
     touchMultiplier: 2,
     infinite: false,
   });
