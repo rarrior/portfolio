@@ -4,8 +4,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 const experiencesCollection = await getCollection('experiences');
 const experiences = experiencesCollection
-  .sort((a, b) => a.data.order - b.data.order)
-  .map((exp) => exp.data);
+  .sort((a: CollectionEntry<'experiences'>, b: CollectionEntry<'experiences'>) => a.data.order - b.data.order)
+  .map((exp: CollectionEntry<'experiences'>) => exp.data);
 ---
 
 <section id="experience" class="section-padding px-6 relative bg-dark-900/30 scroll-mt-20" data-scroll-section>
