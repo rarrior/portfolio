@@ -1,40 +1,35 @@
-# Modern Portfolio Website - Pure Astro
+# Raúl Arriola Gómez - Portfolio
 
-A stunning, modern portfolio website built with **pure Astro** (no React), featuring smooth CSS transitions, a beautiful blue color palette, and full TypeScript support.
+A modern, high-performance portfolio website **Built with Astro 5, TypeScript, Tailwind CSS, GSAP & Lenis** for optimal performance, featuring smooth animations, responsive design, and a professional dark theme with blue gradient accents.
 
-## ✨ Features
+## ✨ Portfolio Features
 
-- **Pure Astro**: No React dependencies - faster and simpler
+- **Pure Astro**: Built with Astro 5 - no React dependencies, faster performance
 - **Modern Design**: Dark theme with blue gradient accents (#33bdf3)
-- **Smooth Animations**: CSS-based transitions and scroll animations
-- **Fully Responsive**: Works perfectly on all devices
-- **TypeScript**: Full type safety throughout
-- **SEO Optimized**: Meta tags and semantic HTML
+- **Smooth Animations**: GSAP & Lenis for buttery-smooth scroll animations
+- **Fully Responsive**: Optimized for all devices and screen sizes
+- **TypeScript**: Full type safety throughout the codebase
+- **SEO Optimized**: Meta tags and semantic HTML structure
 - **Fast Performance**: Static site generation for lightning-fast loads
+- **Glass Morphism**: Modern UI effects and transitions
+- **Content Collections**: Structured content management for experiences
 
-## 🎨 Design Highlights
+## 🎯 Technical Highlights
 
-- Dark theme with blue gradient accents
-- Glass morphism effects
-- Smooth scroll animations using Intersection Observer
-- CSS-only transitions (no JavaScript animation libraries)
-- Professional and modern aesthetic
+✅ **Astro 5**: Server-side rendering with minimal client-side JavaScript
+✅ **TypeScript**: Full type safety across all components and utilities
+✅ **Content Collections**: Type-safe content management for experiences
+✅ **GSAP**: Professional-grade animations library
+✅ **Lenis**: Buttery-smooth scroll experience
+✅ **Modular Architecture**: Reusable components and utilities
 
-## 📦 What's Included
+## 📋 Portfolio Sections
 
-### Sections
-1. **Hero** - Eye-catching introduction with animated gradients
-2. **About** - Personal bio with stats and feature cards
-3. **Experience** - Interactive tech carousel + work timeline
-4. **Projects** - Grid showcase of your projects
-5. **Contact** - Contact information cards (no form)
-6. **Footer** - Social links and quick navigation
-
-### Tech Stack
-- Astro 5
-- TypeScript
-- Tailwind CSS
-- CSS Animations
+1. **Hero** - Eye-catching introduction with animated gradients and 20+ years experience highlight
+2. **Experience** - Complete work history with interactive tech stack showcase
+3. **Tech Stack** - Comprehensive display of all technologies and tools
+4. **Contact** - Easy-to-use contact information with direct links
+5. **Footer** - Social links and quick navigation
 
 ## 🚀 Quick Start
 
@@ -42,10 +37,10 @@ A stunning, modern portfolio website built with **pure Astro** (no React), featu
 
 ```bash
 # Install dependencies
-npm install
+pnpm i
 
 # Start development server
-npm run dev
+pnpm dev
 ```
 
 Visit `http://localhost:4321` to see your portfolio!
@@ -53,93 +48,56 @@ Visit `http://localhost:4321` to see your portfolio!
 ### Build for Production
 
 ```bash
-npm run build
+pnpm build
 ```
 
 The optimized site will be in the `dist/` folder.
-
-## ✏️ Customization
-
-### 1. Update Personal Information
-
-**Hero Section** (`src/components/Hero.astro`):
-- Line 20: Change "Your Name" to your actual name
-- Line 26: Update your description
-
-**Contact Section** (`src/components/Contact.astro`):
-- Lines 4-24: Update email, LinkedIn, phone, GitHub
-
-**Footer** (`src/components/Footer.astro`):
-- Lines 8-30: Update social media links
-- Line 82: Change "Your Name" in copyright
-
-### 2. Add Your Experience
-
-**Experience Component** (`src/components/Experience.astro`):
-- Lines 3-11: Update technologies (keep emojis or add your own)
-- Lines 13-48: Replace with your actual work experience
-
-### 3. Add Your Projects
-
-**Projects Component** (`src/components/Projects.astro`):
-- Lines 3-60: Replace with your real projects
-- Update titles, descriptions, technologies, and links
-
-### 4. Customize Colors
-
-**Tailwind Config** (`tailwind.config.mjs`):
-- Lines 6-15: Adjust the blue primary color palette
-- Current main color: #33bdf3
-- Try other blues: #1890ff, #0ea5e9, #3b82f6
-
-### 5. Change Fonts
-
-**Global Styles** (`src/styles/global.css`):
-- Line 1: Update Google Fonts import
-- `tailwind.config.mjs` lines 17-20: Update font families
 
 ## 📁 Project Structure
 
 ```
 /
 ├── public/
-│   └── favicon.svg           # Blue gradient favicon
+│   ├── companies/            # Company logos (devo, gft, cigna, indra, mcu)
+│   └── svg/                  # Technology icons (40+ tech logos)
 ├── src/
 │   ├── components/
-│   │   ├── About.astro       # About section
-│   │   ├── Contact.astro     # Contact info (no form)
-│   │   ├── Experience.astro  # Experience + tech carousel
-│   │   ├── Footer.astro      # Footer
-│   │   ├── Hero.astro        # Hero section
-│   │   ├── Navigation.astro  # Navigation bar
-│   │   └── Projects.astro    # Projects grid
+│   │   ├── Hero.astro        # Hero section with animated gradients
+│   │   ├── Experience.astro  # Work experience timeline
+│   │   ├── TechStack.astro   # Interactive tech stack display
+│   │   ├── LogoWall.astro    # Company logos showcase
+│   │   ├── Contact.astro     # Contact information section
+│   │   ├── Footer.astro      # Footer with social links
+│   │   └── buttons/          # Reusable button components
+│   ├── content/
+│   │   ├── config.ts         # Content collection schema
+│   │   └── experiences/      # Work experience markdown files
 │   ├── layouts/
-│   │   └── Layout.astro      # Main layout
+│   │   └── Layout.astro      # Main layout with SEO
 │   ├── pages/
 │   │   └── index.astro       # Homepage
+│   ├── utils/
+│   │   ├── contact.ts        # Contact information & icons
+│   │   ├── technologies.ts   # Tech stack configuration
+│   │   ├── navigation.ts     # Smooth scroll navigation
+│   │   └── scrollAnimations.ts # Scroll animation utilities
 │   └── styles/
 │       └── global.css        # Global styles + animations
 ├── astro.config.mjs          # Astro configuration
-├── tailwind.config.mjs       # Tailwind + color config
+├── tailwind.config.mjs       # Tailwind + color palette
 ├── tsconfig.json             # TypeScript config
 └── package.json              # Dependencies
 ```
 
-## 🎯 Key Differences from React Version
+## 🎨 Animations & Interactions
 
-✅ **Simpler**: No React, just pure Astro components  
-✅ **Faster**: Smaller bundle size, faster load times  
-✅ **Cleaner**: Less JavaScript, more HTML/CSS  
-✅ **Native**: Uses native Web APIs (Intersection Observer)  
-✅ **Easier**: No React hooks or state management needed
-
-## 🎨 Animations
-
-All animations are CSS-based:
-- **Fade in on scroll**: Using Intersection Observer API
-- **Hover effects**: Pure CSS transitions
-- **Tech carousel**: Vanilla JavaScript
-- **Smooth scroll**: Native CSS `scroll-behavior`
+The portfolio features smooth, performant animations:
+- **GSAP**: Advanced scroll-triggered animations
+- **Lenis**: Smooth scroll with momentum
+- **Intersection Observer**: Lazy-loaded fade-in effects
+- **CSS Transitions**: Hover effects and micro-interactions
+- **Glass Morphism**: Modern UI with backdrop blur effects
+- **Gradient Animations**: Animated hero background gradients
 
 ## 📱 Responsive Breakpoints
 
@@ -154,12 +112,6 @@ All animations are CSS-based:
 2. Import on [vercel.com](https://vercel.com)
 3. Deploy automatically
 
-### Netlify
-1. Push to GitHub
-2. Import on [netlify.com](https://netlify.com)
-3. Build: `npm run build`
-4. Publish: `dist`
-
 ### GitHub Pages
 Update `astro.config.mjs`:
 ```js
@@ -170,55 +122,43 @@ export default defineConfig({
 });
 ```
 
-## ⚡ Commands
+## 🔧 Architecture & Best Practices
 
-| Command | Action |
-|---------|--------|
-| `npm install` | Install dependencies |
-| `npm run dev` | Start dev server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
+### Content Management
+- **Astro Content Collections**: Type-safe markdown-based content for experiences
+- **Frontmatter Validation**: Zod schemas ensure data consistency
+- **Auto-sorted Content**: Experiences ordered by `order` field
 
-## 🔧 Features Explained
+### Performance Optimizations
+- **Static Site Generation**: Pre-rendered HTML for instant page loads
+- **Minimal JavaScript**: Only essential client-side code
+- **Optimized Assets**: SVG icons for crisp scaling
+- **Lazy Loading**: Images and animations load on demand
 
-### Tech Stack Carousel
-- Displays 4 technologies at a time
-- Click arrows or dots to navigate
-- Smooth transitions with CSS
-- Pure JavaScript (no React)
+### Code Quality
+- **TypeScript**: Full type coverage
+- **Modular Utils**: Reusable utility functions
+- **Component Architecture**: Small, focused Astro components
+- **Consistent Styling**: Tailwind CSS utility classes
 
-### Scroll Animations
-- Elements fade in as you scroll
-- Uses Intersection Observer API
-- Staggered animations for visual interest
-- No animation libraries needed
+## 🎓 Technologies & Resources
 
-### Contact Section
-- Clean contact information cards
-- No email form (as requested)
-- Click-to-action buttons
-- Links to email, LinkedIn, etc.
+- [Astro Documentation](https://docs.astro.build) - Framework documentation
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org) - JavaScript with type safety
+- [GSAP](https://greensock.com/gsap/) - Professional animation library
+- [Lenis](https://lenis.darkroom.engineering/) - Smooth scroll library
 
-## 💡 Pro Tips
+## 🚀 Performance
 
-1. **Images**: Add project screenshots to `/public/` folder
-2. **Icons**: Currently using emojis, can replace with SVGs
-3. **Colors**: Easy to change in `tailwind.config.mjs`
-4. **Content**: All text is in component files
-5. **Performance**: Astro automatically optimizes everything
-
-## 🎓 Learn More
-
-- [Astro Documentation](https://docs.astro.build)
-- [Tailwind CSS](https://tailwindcss.com)
-- [TypeScript](https://www.typescriptlang.org)
-
-## 📄 License
-
-MIT License - use this template for your own portfolio!
+Built for speed and efficiency:
+- ⚡ Static Site Generation (SSG)
+- 🎯 Minimal JavaScript bundle
+- 📦 Optimized asset delivery
+- 🔍 SEO-friendly structure
+- ♿ Accessible markup
 
 ---
 
-**Built with Astro 5, TypeScript, and Tailwind CSS**
+**Built with Astro 5, TypeScript, Tailwind CSS, GSAP & Lenis**
 
-Made with ❤️ for developers who want a fast, modern portfolio without the complexity of React.
