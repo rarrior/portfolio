@@ -1,18 +1,7 @@
 ---
-const technologies = [
-  "astro",
-  "react",
-  "typeScript",
-  "tailwindcss",
-  "next",
-  "nodejs",
-  "HTML5",
-  "CSS3",
-  "javaScript",
-  "git",
-  "supabase",
-  "mysql",
-];
+import { getTechnologies } from '../utils/technologies'
+
+const technologies = getTechnologies();
 ---
 
 <div class="w-full overflow-x-hidden py-10">
@@ -47,12 +36,12 @@ const technologies = [
     }
   }
   .animate-scroll {
-    animation: scroll 60s linear infinite;
+    animation: scroll 150s linear infinite;
   }
 
   @media (min-width: 768px) {
     .animate-scroll {
-      animation-duration: 40s;
+      animation-duration: 120s;
     }
   }
 </style>
