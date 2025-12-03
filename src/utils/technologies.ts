@@ -63,6 +63,5 @@ export const getTechnologies = () => {
   categories.forEach(category => {
     techStack[category].forEach(tech => technologies.push(tech.icon));
   });
-  console.log(technologies)
   return technologies
 }
