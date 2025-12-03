@@ -16,12 +16,12 @@ A modern, high-performance portfolio website **Built with Astro 5, TypeScript, T
 
 ## 🎯 Technical Highlights
 
-✅ **Astro 5**: Server-side rendering with minimal client-side JavaScript
-✅ **TypeScript**: Full type safety across all components and utilities
-✅ **Content Collections**: Type-safe content management for experiences
-✅ **GSAP**: Professional-grade animations library
-✅ **Lenis**: Buttery-smooth scroll experience
-✅ **Modular Architecture**: Reusable components and utilities
+- **Astro 5** 🚀: Server-side rendering with minimal client-side JavaScript   
+- **TypeScript** ✔️: Full type safety across all components and utilities.  
+- **Content Collections** 📚: Type-safe content management for experiences  
+- **GSAP** 🫨: Professional-grade animations library  
+- **Lenis** 🎚️: Buttery-smooth scroll experience  
+- **Modular Architecture** 🏛️: Reusable components and utilities  
 
 ## 📋 Portfolio Sections
 
